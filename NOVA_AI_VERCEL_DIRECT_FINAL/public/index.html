@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070812">
+  <title>NOVA AI — Intelligence, Reimagined</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="space-glow"></div><div class="orb-bg"></div><div class="stars"></div>
+
+<header class="topbar">
+  <button id="mobileMenu" class="mobile-menu" aria-label="Open navigation">☰</button>
+  <div class="brand">
+    <div class="brand-mark">N</div>
+    <div><div class="brand-name">NOVA <b>AI</b></div><div class="brand-sub">INTELLIGENCE, REIMAGINED</div></div>
+  </div>
+  <div class="top-center">
+    <button id="historyBtn" class="top-btn">◷ History</button>
+    <button id="newChat" class="top-btn gold">＋ New chat</button>
+  </div>
+  <div class="top-right">
+    <span class="status"><i></i> ONLINE</span>
+    <div class="avatar">N</div>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="left glass">
+    <div class="nav-title">NOVA CORE</div>
+    <button class="nav-item active" data-mode="chat"><span>✦</span><div><b>AI Chat</b><small>Ask anything</small></div></button>
+    <button class="nav-item" data-mode="agent"><span>⌁</span><div><b>AI Agent</b><small>Research & execute</small></div><em>BETA</em></button>
+    <button class="nav-item" data-mode="writer"><span>✎</span><div><b>AI Writer</b><small>Create & refine</small></div></button>
+    <button class="nav-item" data-mode="translate"><span>文</span><div><b>Translator</b><small>100+ languages</small></div></button>
+    <button class="nav-item" data-mode="summarize"><span>≡</span><div><b>Summarizer</b><small>Extract the signal</small></div></button>
+    <button class="nav-item" data-mode="code"><span>&lt;/&gt;</span><div><b>Code Lab</b><small>Build with AI</small></div></button>
+    <button class="nav-item" data-mode="brainstorm"><span>✧</span><div><b>Idea Engine</b><small>Generate concepts</small></div></button>
+    <button class="nav-item" data-mode="analyst"><span>◈</span><div><b>AI Analyst</b><small>Think deeper</small></div></button>
+
+    <div class="left-bottom">
+      <div class="nav-title">WORKSPACE</div>
+      <button id="uploadBtn" class="mini">＋ Upload files</button>
+      <button id="clearBtn" class="mini">⌫ Clear current chat</button>
+      <input id="fileInput" type="file" multiple accept="image/*,.txt,.md,.json,.csv,.pdf,.html,.xml" hidden>
+    </div>
+  </aside>
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+  <main class="main">
+    <div class="chat-top glass">
+      <div><div class="eyebrow"><span></span>NOVA NEURAL CORE</div><h1 id="pageTitle">What can I help you create?</h1></div>
+      <div class="model-box">
+        <label>MODEL</label>
+        <select id="model">
+          <option value="gemini-3.8-flash">NOVA Flash · Fast</option>
+          <option value="gemini-3.7-flash">NOVA Pro · Balanced</option>
+          <option value="gemini-3.8-flash">NOVA Agent · Reasoning</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="messages" class="messages">
+      <div class="welcome glass-card">
+        <div class="nova-orb-small">N</div>
+        <div><div class="welcome-title">Hello, I'm <span>NOVA</span>.</div>
+        <p>A next-generation AI workspace for thinking, creating, researching and building.</p></div>
+      </div>
+      <div class="quick-grid">
+        <button class="quick" data-prompt="Research the latest major AI developments and summarize the most important changes."><b>⌁ Live research</b><small>Search current information</small></button>
+        <button class="quick" data-prompt="Design a premium futuristic landing page for NOVA AI."><b>✦ Create</b><small>Turn ideas into polished work</small></button>
+        <button class="quick" data-prompt="Explain how a large language model works, with a simple example."><b>◎ Explain</b><small>Make complex things clear</small></button>
+        <button class="quick" data-prompt="Build a clean HTML/CSS/JS starter for a futuristic AI dashboard."><b>&lt;/&gt; Build</b><small>Ship production-minded code</small></button>
+      </div>
+    </div>
+
+    <div id="attachmentTray" class="attachment-tray"></div>
+
+    <div id="imagePanel" class="image-panel glass hidden">
+      <div class="image-head"><div><b>NOVA Image</b><small>NOVA Image · Gemini</small></div><button id="closeImage">×</button></div>
+      <textarea id="imagePrompt" rows="3" placeholder="Describe the image you want NOVA to create…"></textarea>
+      <div class="image-options"><select id="imageRatio"><option value="1:1">1:1 Square</option><option value="16:9">16:9 Landscape</option><option value="9:16">9:16 Portrait</option><option value="4:3">4:3</option><option value="3:4">3:4</option></select><select id="imageSize"><option value="1K">1K</option><option value="2K" selected>2K HD</option><option value="4K">4K Ultra</option></select><button id="generateImage" class="image-generate">Generate</button></div>
+      <div id="imageResult"></div>
+    </div>
+
+    <div class="composer glass">
+      <textarea id="input" rows="1" placeholder="Message NOVA AI…"></textarea>
+      <div class="composer-bottom">
+        <div class="composer-left">
+          <button id="attachBtn" class="round" title="Upload">＋</button>
+          <button id="searchToggle" class="feature">⌁ Web search <span></span></button>
+          <button id="agentToggle" class="feature">◈ Agent <span></span></button>
+          <button id="imageBtn" class="feature image-feature">✦ NOVA Image</button>
+        </div>
+        <div class="composer-right">
+          <small>Enter to send · Shift + Enter</small>
+          <button id="send" class="send">↑</button>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer">NOVA AI may make mistakes. Verify important information.</div>
+  </main>
+
+  <aside id="historyPanel" class="history-panel glass hidden">
+    <div class="history-head"><b>Conversation history</b><button id="closeHistory">×</button></div>
+    <div id="historyList"></div>
+  </aside>
+
+  <aside class="right glass">
+    <div class="side-title">NOVA ENGINE</div>
+    <div class="engine">
+      <div class="engine-orbit"><div class="engine-core">N</div><i class="sat a">AI</i><i class="sat b">∞</i><i class="sat c">✦</i></div>
+      <div class="engine-live"><i></i> Neural core active</div>
+    </div>
+    <div class="side-title">CAPABILITIES</div>
+    <div class="cap"><i>✦</i><div><b>Vision</b><small>Image understanding</small></div></div>
+    <div class="cap"><i>⌁</i><div><b>Web</b><small>Live information</small></div></div>
+    <div class="cap"><i>◫</i><div><b>Files</b><small>Documents & data</small></div></div>
+    <div class="cap"><i>⌘</i><div><b>Agent</b><small>Multi-step workflows</small></div></div>
+  </aside>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/highlight.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
